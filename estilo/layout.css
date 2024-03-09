@@ -1,0 +1,46 @@
+/*Estilos globales*/
+
+/*Especificidad : 001*/
+body{
+    margin: 0em
+}
+
+/*Especificidad : 001*/
+header, footer, nav {
+
+    /*Estilo*/
+    display: flex;
+    flex: 1;
+    justify-content: space-evenly;
+    align-items: center;
+   
+}
+
+/* Estilos para pantallas más pequeñas */
+
+@media (max-width: 70em) {
+    /*Especificidad : 001*/
+    header, footer, nav {
+      flex-direction: column; /* Cambiar la dirección de flexbox a vertical */
+    }
+}
+
+
+
+/*----------------- Section -----------------*/
+/*Especificidad : 001*/
+section{
+    /*Margen*/
+    margin: 1em;
+    padding: 1em;
+}
+
+/*Especificidad: 001*/
+li {
+    padding: 1em;
+}
+
+/*Especificidad: 001*/
+h1 {
+    margin-left: 1em;
+}

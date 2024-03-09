@@ -1,0 +1,77 @@
+/*Estilos globales*/
+
+/*Especificidad : 001*/
+header, footer, nav {
+    /*Colores*/
+    background-color: black;
+    color: white;
+ 
+}
+/*Especificidad : 002*/
+header > h1 {
+    color:white;
+    background-color: black;
+}
+
+/*----------------- Body -----------------*/
+/*Especificidad : 001*/
+body{
+    /*Letra*/ 
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 2;
+    /*Color*/
+    background-color: grey;
+    color:black;
+}
+
+/*Especificidad : 001*/
+h1 {
+    color:black;
+    background-color: grey;
+}
+
+/*Especificidad : 011*/
+a:hover {
+    color:black; 
+    background-color: white;
+ }
+
+/* ---------------- Nav ---------------*/
+
+/*Especificidad : 002*/
+nav > a{
+    font-size: 1.25em; 
+    text-decoration: none; 
+    color: white;
+    background-color: black 
+}
+
+/*Especificidad : 002*/
+nav > h1{
+    color:white;
+    background-color: black;
+}
+
+/*----------------- Section -----------------*/
+/*Especificidad : 001*/
+section{
+    /*Color*/
+    color:black;
+    background-color: white;
+}
+
+/*------------------ Table ------------------*/
+/*Especificidad : 001*/
+table{
+    width: 50%;
+    border: 0.1em solid;
+    text-align: center;
+}
+
+/*-------------- Multimedia --------------*/
+/*Especificidad : 001*/
+img, video {
+    width: 100%;
+    max-width: 40em;
+    height: auto;
+}
