@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rutas xmlns="http://www.uniovi.es"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.uniovi.es rutas.xsd" >
+    <ruta>
+        <nombre_ruta>Ruta de Cala Comte</nombre_ruta>
+        <tipo_ruta>Senderismo costero</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-07-12</fecha_inicio>
+        <hora_inicio>15:00:00</hora_inicio>
+        <duracion>PT2H</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Paseo por la costa de Cala Comte</descripcion>
+        <personas_adecuadas>Personas con capacidad física media</personas_adecuadas>
+        <lugar_inicio>Cala Comte</lugar_inicio>
+        <direccion_inicio>Oeste</direccion_inicio>
+        <coordenadas>
+            <longitud>1.2768200</longitud>
+            <latitud>38.9712200</latitud>
+            <altitud>10</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.visitcalacomte.com/</referencia>
+            <referencia>https://www.turismoislasbaleares.com/cala-comte</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Cala_Comte</referencia>
+        </referencias>
+        <recomendacion>Disfruta de las aguas cristalinas y las puestas de sol en Cala Comte.</recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Mirador Punta de Sa Figuera</nombre_hito>
+                <descripcion_hito>Ofrece vistas panorámicas de la costa.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>1.2668200</longitud>
+                    <latitud>38.9712200</latitud>
+                    <altitud>100</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="200 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>calacomte1.jpg</foto>
+                    <foto>calacomte2.jpg</foto>
+                    <foto>calacomte3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>calacomte.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Cala Bassa</nombre_hito>
+                <descripcion_hito>Playa de arena blanca y aguas turquesas.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>1.2568200</longitud>
+                    <latitud>38.9612200</latitud>
+                    <altitud>143</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="150 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>calabassa1.jpg</foto>
+                    <foto>calabassa2.jpg</foto>
+                    <foto>calabassa3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>calabassa.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Acantilados de Es Vedrà</nombre_hito>
+                <descripcion_hito>Impresionantes formaciones rocosas frente a la costa.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>1.2668200</longitud>
+                    <latitud>38.9712200</latitud>
+                    <altitud>67</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="300 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>esvedra1.jpg</foto>
+                    <foto>esvedra2.jpg</foto>
+                    <foto>esvedra3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>esvedra.mp4</video>
+                </galeria_videos>
+            </hito>
+
+        </hitos>
+        <planimetria>Ruta_Cala_Comte.kml</planimetria>
+        <altimetria>Ruta_Cala_Comte.svg</altimetria>
+    </ruta>
+    <!-- Otras rutas similares pueden seguir aquí -->
+</rutas>

@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+targetNamespace="http://www.uniovi.es"
+xmlns="http://www.uniovi.es"
+elementFormDefault="qualified">
+
+  <!-- Define element types -->
+  <xs:element name="rutas" type="rutasType"/>
+
+  <xs:element name="ruta" type="rutaType"/>
+
+  <xs:element name="nombre_ruta" type="xs:string"/>
+  <xs:element name="tipo_ruta" type="xs:string"/>
+  <xs:element name="transporte" type="xs:string"/>
+  <xs:element name="fecha_inicio" type="xs:date"/>
+  <xs:element name="hora_inicio" type="xs:time"/>
+  <xs:element name="duracion" type="xs:string"/>
+  <xs:element name="agencia" type="xs:string"/>
+  <xs:element name="descripcion" type="xs:string"/>
+  <xs:element name="personas_adecuadas" type="xs:string"/>
+  <xs:element name="lugar_inicio" type="xs:string"/>
+  <xs:element name="direccion_inicio" type="xs:string"/>
+
+  <xs:element name="coordenadas" type="coordenadasType"/>
+  <xs:element name="longitud" type="xs:string"/>
+  <xs:element name="latitud" type="xs:string"/>
+  <xs:element name="altitud" type="xs:string"/>
+
+  <xs:element name="referencias" type="referenciasType"/>
+  <xs:element name="referencia" type="xs:string"/>
+
+  <xs:element name="recomendacion" type="xs:string"/>
+
+  <xs:element name="hitos" type="hitosType"/>
+  <xs:element name="hito" type="hitoType"/>
+  <xs:element name="nombre_hito" type="xs:string"/>
+  <xs:element name="descripcion_hito" type="xs:string"/>
+  <xs:element name="coordenadas_hito" type="coordenadasType"/>
+  <xs:element name="distancia_hito" type="distanciaHitoType"/>
+  <xs:element name="galeria_fotos" type="galeriaFotosType"/>
+  <xs:element name="foto" type="xs:string"/>
+  <xs:element name="galeria_videos" type="galeriaVideosType"/>
+  <xs:element name="video" type="xs:string"/>
+
+  <!-- Define complex types -->
+  <xs:complexType name="rutasType">
+    <xs:sequence>
+      <xs:element name="ruta" type="rutaType" minOccurs="3" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="rutaType">
+    <xs:sequence>
+      <xs:element name="nombre_ruta" type="xs:string"/>
+      <xs:element name="tipo_ruta" type="xs:string"/>
+      <xs:element name="transporte" type="xs:string"/>
+      <xs:element name="fecha_inicio" type="xs:date" minOccurs="0"  maxOccurs="1" />
+      <xs:element name="hora_inicio" type="xs:time" minOccurs="0" maxOccurs="1"/>
+      <xs:element name="duracion" type="xs:duration"/>
+      <xs:element name="agencia" type="xs:string"/>
+      <xs:element name="descripcion" type="xs:string"/>
+      <xs:element name="personas_adecuadas" type="xs:string"/>
+      <xs:element name="lugar_inicio" type="xs:string"/>
+      <xs:element name="direccion_inicio" type="xs:string"/>
+      <xs:element name="coordenadas" type="coordenadasType"/>
+      <xs:element name="referencias" type="referenciasType"/>
+      <xs:element name="recomendacion" type="xs:string"/>
+      <xs:element name="hitos" type="hitosType"/>
+      <xs:element name="planimetria" type="xs:string"/>
+      <xs:element name="altimetria" type="xs:string"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="coordenadasType">
+    <xs:sequence>
+      <xs:element name="longitud" type="xs:decimal"/>
+      <xs:element name="latitud" type="xs:decimal"/>
+      <xs:element name="altitud" type="xs:decimal"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="referenciasType">
+    <xs:sequence>
+      <xs:element name="referencia" type="xs:string" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hitosType">
+    <xs:sequence>
+      <xs:element name="hito" type="hitoType" minOccurs="1" maxOccurs="unbounded"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="hitoType">
+    <xs:sequence>
+      <xs:element name="nombre_hito" type="xs:string"/>
+      <xs:element name="descripcion_hito" type="xs:string"/>
+      <xs:element name="coordenadas_hito" type="coordenadasType"/>
+      <xs:element name="distancia_hito" type="distanciaHitoType"/>
+      <xs:element name="galeria_fotos" type="galeriaFotosType"/>
+      <xs:element name="galeria_videos" type="galeriaVideosType"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="distanciaHitoType">
+    <xs:attribute name="distancia" type="xs:string" use="required"/>
+  </xs:complexType>
+
+  <xs:complexType name="galeriaFotosType">
+    <xs:sequence>
+      <xs:element name="foto" type="xs:string" minOccurs="0" maxOccurs="5"/>
+    </xs:sequence>
+  </xs:complexType>
+
+  <xs:complexType name="galeriaVideosType">
+    <xs:sequence>
+      <xs:element name="video" type="xs:string" minOccurs="0" maxOccurs="3"/>
+    </xs:sequence>
+  </xs:complexType>
+
+</xs:schema>
