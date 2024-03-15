@@ -85,5 +85,169 @@
         <planimetria>Ruta_Cala_Comte.kml</planimetria>
         <altimetria>Ruta_Cala_Comte.svg</altimetria>
     </ruta>
+    <ruta>
+        <nombre_ruta>Ruta de Cala Millor</nombre_ruta>
+        <tipo_ruta>Senderismo costero</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-08-20</fecha_inicio>
+        <hora_inicio>09:30:00</hora_inicio>
+        <duracion>PT3H</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Recorrido por la costa de Cala Millor</descripcion>
+        <personas_adecuadas>Personas con capacidad física media</personas_adecuadas>
+        <lugar_inicio>Cala Millor</lugar_inicio>
+        <direccion_inicio>Este</direccion_inicio>
+        <coordenadas>
+            <longitud>3.3801500</longitud>
+            <latitud>39.5943900</latitud>
+            <altitud>5</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.visitcalamillor.com/</referencia>
+            <referencia>https://www.turismoislasbaleares.com/cala-millor</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Cala_Millor</referencia>
+        </referencias>
+        <recomendacion>Admira la belleza natural de Cala Millor mientras disfrutas de la brisa marina.</recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Far del Capdepera</nombre_hito>
+                <descripcion_hito>Antiguo faro con vistas panorámicas del litoral.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>3.4618300</longitud>
+                    <latitud>39.7175000</latitud>
+                    <altitud>200</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="500 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>farcapdepera1.jpg</foto>
+                    <foto>farcapdepera2.jpg</foto>
+                    <foto>farcapdepera3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>farcapdepera.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Cala Bona</nombre_hito>
+                <descripcion_hito>Pequeña bahía con aguas tranquilas y ambiente acogedor.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>3.3900000</longitud>
+                    <latitud>39.6000000</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="1 km"></distancia_hito>
+                <galeria_fotos>
+                    <foto>calabona1.jpg</foto>
+                    <foto>calabona2.jpg</foto>
+                    <foto>calabona3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>calabona.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Punta de n'Amer</nombre_hito>
+                <descripcion_hito>Reserva natural con senderos entre bosques de pinos y vistas al mar.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>3.3973500</longitud>
+                    <latitud>39.5848300</latitud>
+                    <altitud>50</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="800 metros"></distancia_hito>
+                <galeria_fotos>
+                    <foto>puntanamer1.jpg</foto>
+                    <foto>puntanamer2.jpg</foto>
+                    <foto>puntanamer3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>puntanamer.mp4</video>
+                </galeria_videos>
+            </hito>
+        </hitos>
+        <planimetria>Ruta_Cala_Millor.kml</planimetria>
+        <altimetria>Ruta_Cala_Millor.svg</altimetria>
+    </ruta>
+    <ruta>
+        <nombre_ruta>Ruta de Sa Calobra</nombre_ruta>
+        <tipo_ruta>Senderismo montañoso</tipo_ruta>
+        <transporte>A pie</transporte>
+        <fecha_inicio>2023-09-15</fecha_inicio>
+        <hora_inicio>10:00:00</hora_inicio>
+        <duracion>PT4H</duracion>
+        <agencia>Sin agencia</agencia>
+        <descripcion>Excursión por el impresionante paisaje montañoso de Sa Calobra</descripcion>
+        <personas_adecuadas>Personas con buena condición física</personas_adecuadas>
+        <lugar_inicio>Estación de tren de Palma</lugar_inicio>
+        <direccion_inicio>Oeste</direccion_inicio>
+        <coordenadas>
+            <longitud>2.7676</longitud>
+            <latitud>39.6616</latitud>
+            <altitud>10</altitud>
+        </coordenadas>
+        <referencias>
+            <referencia>https://www.infomallorca.net/que-ver-y-hacer/rutas-y-paseos/ruta-de-sa-calobra/</referencia>
+            <referencia>https://es.wikipedia.org/wiki/Sa_Calobra</referencia>
+        </referencias>
+        <recomendacion>Explora los desfiladeros y cascadas mientras sigues el curso del Torrent de Pareis.</recomendacion>
+        <hitos>
+            <hito>
+                <nombre_hito>Coll dels Reis</nombre_hito>
+                <descripcion_hito>Punto de inicio del sendero con vistas panorámicas de la Sierra de Tramuntana.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>2.8060</longitud>
+                    <latitud>39.8487</latitud>
+                    <altitud>750</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="2 km"></distancia_hito>
+                <galeria_fotos>
+                    <foto>collreis1.jpg</foto>
+                    <foto>collreis2.jpg</foto>
+                    <foto>collreis3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>collreis.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Embalse de Gorg Blau</nombre_hito>
+                <descripcion_hito>Embalse con aguas cristalinas rodeado de impresionantes montañas.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>2.8298</longitud>
+                    <latitud>39.8499</latitud>
+                    <altitud>570</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="4 km"></distancia_hito>
+                <galeria_fotos>
+                    <foto>gorgblau1.jpg</foto>
+                    <foto>gorgblau2.jpg</foto>
+                    <foto>gorgblau3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>gorgblau.mp4</video>
+                </galeria_videos>
+            </hito>
+            <hito>
+                <nombre_hito>Torrent de Pareis</nombre_hito>
+                <descripcion_hito>Cañón escarpado con un cauce de río seco, ideal para la fotografía.</descripcion_hito>
+                <coordenadas_hito>
+                    <longitud>2.8466</longitud>
+                    <latitud>39.8384</latitud>
+                    <altitud>10</altitud>
+                </coordenadas_hito>
+                <distancia_hito distancia="7 km"></distancia_hito>
+                <galeria_fotos>
+                    <foto>torrentpareis1.jpg</foto>
+                    <foto>torrentpareis2.jpg</foto>
+                    <foto>torrentpareis3.jpg</foto>
+                </galeria_fotos>
+                <galeria_videos>
+                    <video>torrentpareis.mp4</video>
+                </galeria_videos>
+            </hito>
+        </hitos>
+        <planimetria>Ruta_Sa_Calobra.kml</planimetria>
+        <altimetria>Ruta_Sa_Calobra.svg</altimetria>
+    </ruta>
+    
     <!-- Otras rutas similares pueden seguir aquí -->
 </rutas>
