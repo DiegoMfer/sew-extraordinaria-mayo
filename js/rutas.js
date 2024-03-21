@@ -241,6 +241,8 @@ class Rutas {
           $(xml)
             .find("ruta")
             .each(function () {
+
+              var barHeight = 200
   
               var nombreRuta = $(this).find("nombre_ruta").text();
   
@@ -253,7 +255,7 @@ class Rutas {
               content += '"'
               var counter = 0
   
-              content += counter + ',' + 160 +'\n'
+              content += counter + ',' + barHeight +'\n'
               hitos.each(function () {
                 var altitud = $(this).find("altitud").text();
                 counter += 40
@@ -261,8 +263,8 @@ class Rutas {
                 
                
               });
-              content += counter + 40 + ',' + 160 +'\n'
-              content += 0 + ',' + 160 +'\n'
+              content += counter + 40 + ',' + barHeight +'\n'
+              content += 0 + ',' + barHeight +'\n'
               content += '" style="fill:white;stroke:red;stroke-width:4" />'
               content += 'Su agente de usuario no soporta SVG \n';
   
@@ -271,7 +273,7 @@ class Rutas {
                 var nombreHito = $(this).find("nombre_hito").text();
                 counter += 40
                
-                content += '<text x="' + counter +'" y="'+ 180 + '" style="writing-mode: tb; glyph-orientation-vertical: 0;">'
+                content += '<text x="' + counter +'" y="'+ (barHeight + 20) + '" style="writing-mode: tb; glyph-orientation-vertical: 0;">'
                 content += nombreHito
                 content += "</text>"
                 
