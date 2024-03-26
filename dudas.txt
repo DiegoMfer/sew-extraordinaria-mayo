@@ -5,3 +5,5 @@ Access to XMLHttpRequest at 'file:///C:/Users/dimar/Desktop/sew/sew-extraordinar
 --A qué se refiere--
 Planimetría de la ruta usando el archivo KML generado.
 Altimetría de la ruta usando el archivo SVG generado
+
+--Hay que tener en cuenta cosas de las prácticas de javascript

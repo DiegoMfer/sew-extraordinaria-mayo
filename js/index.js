@@ -103,8 +103,8 @@ class Geolocalizacion {
   }
 
   getPosicion(posicion){
-      this.longitud         = -5.19014 
-      this.latitud          = 43.4676;   
+      this.longitud         = 3.0294800 
+      this.latitud          = 39.6099200;   
       this.mensaje = "Se ha realizado correctamente la petición de geolocalización";  
       this.key = 'AIzaSyCHrw6i7FALRPCmDi4nPyBhAOgsCdjRunA';
   }
@@ -152,13 +152,15 @@ class Geolocalizacion {
       var apiKey = "&key=" + this.key;
       var url = "https://maps.googleapis.com/maps/api/staticmap?";
       var centro = "center=" + this.latitud + "," + this.longitud;
-      var zoom ="&zoom=15";
+      var zoom ="&zoom=8";
       var tamaño= "&size=800x600";
       var marcador = "&markers=color:red%7Clabel:S%7C" + this.latitud + "," + this.longitud;
       var sensor = "&sensor=false"; 
       this.imagenMapa = url + centro + zoom + tamaño + marcador + sensor + apiKey;
       var datos = " <img src='"+this.imagenMapa+"' alt='mapa estático google' /> ";
-      $("main section:eq(4)").append(datos)
+      $("main section:eq(3)").append(datos)
+      $("main section:eq(3) button").remove();
+
   }
 }
 var mapaEstatico = new Geolocalizacion();
