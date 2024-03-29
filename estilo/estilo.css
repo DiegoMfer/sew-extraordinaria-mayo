@@ -75,3 +75,32 @@ img, video {
     max-width: 40em;
     height: auto;
 }
+
+/*-------------------- Formulario --------------*/
+/*Especificidad : 001*/
+input, textarea {
+    background-color:white;
+    color: black;
+    width: 100%;
+    height: 2em;
+    margin-bottom: 2em;
+}
+
+/*Botones radio del formulario*/
+/*Especificidad : 011*/
+input[type=radio]{
+    width: 1em;
+    height: 1em;
+}
+
+/*Boton enviar*/
+/*Especificidad : 011*/
+input[type=submit]{
+    width: 15em;
+    height: 3em;
+}
+
+/*Especificidad : 001*/
+form{
+    margin-right: 0.5em;
+}

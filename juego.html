@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html lang="es">
+
+<head>
+    <!-- Datos que describen el documento -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial scale=1.0" />
+    <meta name="keywords" content="info, persona" />
+    <meta name="author" content="Diego Martín Fernández" />
+    <meta name="description" content="Proyecto final sew extraordinaria " />
+    <title>Página web</title>
+    <link rel="icon" href="multimedia/image/favicon.png" type="image/png">
+    <link rel="stylesheet" type="text/css" href="estilo/estilo.css">
+    <link rel="stylesheet" type="text/css" href="estilo/layout.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="js/juego.js"></script>
+</head>
+
+<body>
+    <header>
+        <h1>Escritorio Virtual</h1>
+        <nav>
+            <a tabindex="1" accesskey="I" href="index.html">Página principal</a>
+            <a tabindex="2" accesskey="G" href="gastronomia.html">Gastronomía</a>
+            <a tabindex="3" accesskey="R" href="rutas.html">Rutas</a>
+            <a tabindex="4" accesskey="M" href="meteorologia.html">Meteorología</a>
+            <a tabindex="5" accesskey="J" href="juego.html">Juego</a>
+            <a tabindex="6" accesskey="E" href="reservas.html">Reservas</a>
+        </nav>
+    </header>
+
+    <!--Contenido que diferencia al documento html del resto del documento-->
+    <main>
+        <section>
+            <h2>Contesta el formulario para ganar</h2>
+        <form>
+            <fieldset>
+                <legend>(Completa todas las preguntas antes de enviar el formulario)</legend>
+                <h2>Pregunta 1:</h2>
+                <p>¿Qué opinas sobre la diversidad gastronómica en las Islas Baleares según este sitio web?</p>
+                <input type="radio" name="pregunta1" value="false" id="pregunta1_respuesta1">
+                <label for="pregunta1_respuesta1">a) Escasa</label>
+                <p></p>
+                <input type="radio" name="pregunta1" value="false" id="pregunta1_respuesta2">
+                <label for="pregunta1_respuesta2">b) Limitada</label>
+                <p></p>
+                <input type="radio" name="pregunta1" value="false" id="pregunta1_respuesta3">
+                <label for="pregunta1_respuesta3">c) Aceptable</label>
+                <p></p>
+                <input type="radio" name="pregunta1" value="false" id="pregunta1_respuesta4">
+                <label for="pregunta1_respuesta4">d) Buena</label>
+                <p></p>
+                <input type="radio" name="pregunta1" value="true" id="pregunta1_respuesta5">
+                <label for="pregunta1_respuesta5">e) Excelente</label>
+                <p></p>
+
+                <h2>Pregunta 2:</h2>
+                <p>¿Cómo describirías la variedad de actividades turísticas disponibles en las Islas Baleares en este
+                    sitio web?</p>
+                <input type="radio" name="pregunta2" value="false" id="pregunta2_respuesta1">
+                <label for="pregunta2_respuesta1">a) Limitada</label>
+                <p></p>
+                <input type="radio" name="pregunta2" value="false" id="pregunta2_respuesta2">
+                <label for="pregunta2_respuesta2">b) Moderada</label>
+                <p></p>
+                <input type="radio" name="pregunta2" value="false" id="pregunta2_respuesta3">
+                <label for="pregunta2_respuesta3">c) Suficiente</label>
+                <p></p>
+                <input type="radio" name="pregunta2" value="false" id="pregunta2_respuesta4">
+                <label for="pregunta2_respuesta4">d) Amplia</label>
+                <p></p>
+                <input type="radio" name="pregunta2" value="true" id="pregunta2_respuesta5">
+                <label for="pregunta2_respuesta5">e) Abundante</label>
+                <p></p>
+
+                <h2>Pregunta 3:</h2>
+                <p>¿Qué tan informativo consideras que es el contenido sobre playas en las Islas Baleares en este sitio
+                    web?</p>
+                <input type="radio" name="pregunta3" value="false" id="pregunta3_respuesta1">
+                <label for="pregunta3_respuesta1">a) Poco informativo</label>
+                <p></p>
+                <input type="radio" name="pregunta3" value="false" id="pregunta3_respuesta2">
+                <label for="pregunta3_respuesta2">b) Regular</label>
+                <p></p>
+                <input type="radio" name="pregunta3" value="false" id="pregunta3_respuesta3">
+                <label for="pregunta3_respuesta3">c) Bastante informativo</label>
+                <p></p>
+                <input type="radio" name="pregunta3" value="false" id="pregunta3_respuesta4">
+                <label for="pregunta3_respuesta4">d) Muy informativo</label>
+                <p></p>
+                <input type="radio" name="pregunta3" value="true" id="pregunta3_respuesta5">
+                <label for="pregunta3_respuesta5">e) Extremadamente informativo</label>
+                <p></p>
+
+                <h2>Pregunta 4:</h2>
+                <p>¿Cómo calificarías la experiencia de navegación en este sitio web para encontrar información sobre
+                    eventos culturales en las Islas Baleares?</p>
+                <input type="radio" name="pregunta4" value="false" id="pregunta4_respuesta1">
+                <label for="pregunta4_respuesta1">a) Difícil de navegar</label>
+                <p></p>
+                <input type="radio" name="pregunta4" value="false" id="pregunta4_respuesta2">
+                <label for="pregunta4_respuesta2">b) Moderadamente difícil de navegar</label>
+                <p></p>
+                <input type="radio" name="pregunta4" value="false" id="pregunta4_respuesta3">
+                <label for="pregunta4_respuesta3">c) Aceptable</label>
+                <p></p>
+                <input type="radio" name="pregunta4" value="false" id="pregunta4_respuesta4">
+                <label for="pregunta4_respuesta4">d) Fácil de navegar</label>
+                <p></p>
+                <input type="radio" name="pregunta4" value="true" id="pregunta4_respuesta5">
+                <label for="pregunta4_respuesta5">e) Muy fácil de navegar</label>
+                <p></p>
+
+                <h2>Pregunta 5:</h2>
+                <p>¿Qué tan satisfecho estás con la información proporcionada sobre rutas de senderismo en las Islas
+                    Baleares en este sitio web?</p>
+                <input type="radio" name="pregunta5" value="false" id="pregunta5_respuesta1">
+                <label for="pregunta5_respuesta1">a) Insatisfecho</label>
+                <p></p>
+                <input type="radio" name="pregunta5" value="false" id="pregunta5_respuesta2">
+                <label for="pregunta5_respuesta2">b) Moderadamente insatisfecho</label>
+                <p></p>
+                <input type="radio" name="pregunta5" value="false" id="pregunta5_respuesta3">
+                <label for="pregunta5_respuesta3">c) Neutral</label>
+                <p></p>
+                <input type="radio" name="pregunta5" value="false" id="pregunta5_respuesta4">
+                <label for="pregunta5_respuesta4">d) Satisfecho</label>
+                <p></p>
+                <input type="radio" name="pregunta5" value="true" id="pregunta5_respuesta5">
+                <label for="pregunta5_respuesta5">e) Muy satisfecho</label>
+                <p></p>
+
+                <h2>Pregunta 6:</h2>
+                <p>¿Qué tan completa encuentras la información sobre alojamientos en las Islas Baleares en este sitio
+                    web?</p>
+                <input type="radio" name="pregunta6" value="false" id="pregunta6_respuesta1">
+                <label for="pregunta6_respuesta1">a) Incompleta</label>
+                <p></p>
+                <input type="radio" name="pregunta6" value="false" id="pregunta6_respuesta2">
+                <label for="pregunta6_respuesta2">b) Moderadamente incompleta</label>
+                <p></p>
+                <input type="radio" name="pregunta6" value="false" id="pregunta6_respuesta3">
+                <label for="pregunta6_respuesta3">c) Suficiente</label>
+                <p></p>
+                <input type="radio" name="pregunta6" value="false" id="pregunta6_respuesta4">
+                <label for="pregunta6_respuesta4">d) Completa</label>
+                <p></p>
+                <input type="radio" name="pregunta6" value="true" id="pregunta6_respuesta5">
+                <label for="pregunta6_respuesta5">e) Muy completa</label>
+                <p></p>
+
+                <h2>Pregunta 7:</h2>
+                <p>¿Cómo calificarías la presentación de información sobre festivales en las Islas Baleares en este
+                    sitio web?</p>
+                <input type="radio" name="pregunta7" value="false" id="pregunta7_respuesta1">
+                <label for="pregunta7_respuesta1">a) Pobre</label>
+                <p></p>
+                <input type="radio" name="pregunta7" value="false" id="pregunta7_respuesta2">
+                <label for="pregunta7_respuesta2">b) Moderadamente pobre</label>
+                <p></p>
+                <input type="radio" name="pregunta7" value="false" id="pregunta7_respuesta3">
+                <label for="pregunta7_respuesta3">c) Aceptable</label>
+                <p></p>
+                <input type="radio" name="pregunta7" value="false" id="pregunta7_respuesta4">
+                <label for="pregunta7_respuesta4">d) Buena</label>
+                <p></p>
+                <input type="radio" name="pregunta7" value="true" id="pregunta7_respuesta5">
+                <label for="pregunta7_respuesta5">e) Excelente</label>
+                <p></p>
+
+                <h2>Pregunta 8:</h2>
+                <p>¿Qué tan útil encuentras la información sobre transporte público en las Islas Baleares en este sitio
+                    web?</p>
+                <input type="radio" name="pregunta8" value="false" id="pregunta8_respuesta1">
+                <label for="pregunta8_respuesta1">a) Poco útil</label>
+                <p></p>
+                <input type="radio" name="pregunta8" value="false" id="pregunta8_respuesta2">
+                <label for="pregunta8_respuesta2">b) Moderadamente útil</label>
+                <p></p>
+                <input type="radio" name="pregunta8" value="false" id="pregunta8_respuesta3">
+                <label for="pregunta8_respuesta3">c) Bastante útil</label>
+                <p></p>
+                <input type="radio" name="pregunta8" value="false" id="pregunta8_respuesta4">
+                <label for="pregunta8_respuesta4">d) Muy útil</label>
+                <p></p>
+                <input type="radio" name="pregunta8" value="true" id="pregunta8_respuesta5">
+                <label for="pregunta8_respuesta5">e) Extremadamente útil</label>
+                <p></p>
+
+                <h2>Pregunta 9:</h2>
+                <p>¿Qué tan informativa consideras la sección de historia y cultura de las Islas Baleares en este sitio
+                    web?</p>
+                <input type="radio" name="pregunta9" value="false" id="pregunta9_respuesta1">
+                <label for="pregunta9_respuesta1">a) Poco informativa</label>
+                <p></p>
+                <input type="radio" name="pregunta9" value="false" id="pregunta9_respuesta2">
+                <label for="pregunta9_respuesta2">b) Moderadamente informativa</label>
+                <p></p>
+                <input type="radio" name="pregunta9" value="false" id="pregunta9_respuesta3">
+                <label for="pregunta9_respuesta3">c) Bastante informativa</label>
+                <p></p>
+                <input type="radio" name="pregunta9" value="false" id="pregunta9_respuesta4">
+                <label for="pregunta9_respuesta4">d) Muy informativa</label>
+                <p></p>
+                <input type="radio" name="pregunta9" value="true" id="pregunta9_respuesta5">
+                <label for="pregunta9_respuesta5">e) Extremadamente informativa</label>
+                <p></p>
+
+                <h2>Pregunta 10:</h2>
+                <p>¿Qué tan amigable crees que es este sitio web para planificar un viaje a las Islas Baleares?</p>
+                <input type="radio" name="pregunta10" value="false" id="pregunta10_respuesta1">
+                <label for="pregunta10_respuesta1">a) Poco amigable</label>
+                <p></p>
+                <input type="radio" name="pregunta10" value="false" id="pregunta10_respuesta2">
+                <label for="pregunta10_respuesta2">b) Moderadamente amigable</label>
+                <p></p>
+                <input type="radio" name="pregunta10" value="false" id="pregunta10_respuesta3">
+                <label for="pregunta10_respuesta3">c) Bastante amigable</label>
+                <p></p>
+                <input type="radio" name="pregunta10" value="false" id="pregunta10_respuesta4">
+                <label for="pregunta10_respuesta4">d) Muy amigable</label>
+                <p></p>
+                <input type="radio" name="pregunta10" value="true" id="pregunta10_respuesta5">
+                <label for="pregunta10_respuesta5">e) Extremadamente amigable</label>
+                <p></p>
+            </fieldset>
+            <input type="submit" value="Enviar" onclick="juego.calcular(); event.preventDefault()">
+        </form>
+    </section>
+    </main>
+
+    <!--Tiene que ser el mismo para todo el documento -->
+    <footer>
+        <p>Página web de Diego Martín Fernández</p>
+    </footer>
+</body>
+
+</html>
