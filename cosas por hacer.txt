@@ -1,2 +1,3 @@
 Planimetría de la ruta usando el archivo KML generado.
 Altimetría de la ruta usando el archivo SVG generado.
+El play en los vídeos y audios no va

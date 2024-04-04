@@ -7,3 +7,6 @@ Planimetría de la ruta usando el archivo KML generado.
 Altimetría de la ruta usando el archivo SVG generado
 
 --Hay que tener en cuenta cosas de las prácticas de javascript
+
+
+--Audio y vídeo no se reproducen
