@@ -62,8 +62,19 @@ class DB
     public function getRecurso($recursoId)
     {
         // Prepare the SQL query with a WHERE clause to select a specific resource by ID
-        $sql = "SELECT * FROM Recurso_turistico WHERE id = $recursoId LIMIT 1";
-        $result = $this->conn->query($sql);
+        $sql = "SELECT * FROM Recurso_turistico WHERE id = ?";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind the parameter
+        $stmt->bind_param("i", $recursoId);
+
+        // Execute the statement
+        $stmt->execute();
+
+        // Get the result
+        $result = $stmt->get_result();
 
         $recurso = null;
         if ($result->num_rows > 0) {
@@ -80,7 +91,16 @@ class DB
         } else {
             echo "Resource not found";
         }
+
+        // Close the statement
+        $stmt->close();
+
         return $recurso;
+    }
+
+
+    public function getConn(){
+        return $this->conn;
     }
 }
 
@@ -111,8 +131,42 @@ class Logic
         return $this->selectedRecurso;
     }
 
+    public function getReservationsByDateRange( $start_date, $end_date) {
+        // Create a connection
+        $conn = $this->db->getConn();
     
+        $resource_id = $this->getRecursoSelected()->id;
+    
+        // Prepare the SQL query
+        $sql = "SELECT * 
+                FROM Reserva 
+                WHERE id_recurso = ? 
+                AND fecha_inicio BETWEEN ? AND ? 
+                AND fecha_fin BETWEEN ? AND ?";
+    
+        // Prepare the statement
+        $stmt = $conn->prepare($sql);
+    
+        // Bind parameters
+        $stmt->bind_param('issss', $resource_id, $start_date, $end_date, $start_date, $end_date);
+    
+        // Execute the query
+        $stmt->execute();
+    
+        // Get result
+        $result = $stmt->get_result();
+    
+        // Fetch the results
+        $reservations = $result->fetch_all(MYSQLI_ASSOC);
+    
+        // Close statement and connection
+        $stmt->close();
 
+        return $reservations;
+    }
+
+
+    
 }
 
 
@@ -190,8 +244,9 @@ $lg = new Logic($db);
 
             <section>
                 <h2>Reservar Recurso Turístico -
-                    <?php echo $lg->getRecursoSelected()->nombre; ?> </h2>
-               
+                    <?php echo $lg->getRecursoSelected()->nombre; ?>
+                </h2>
+                    <?php echo $lg->getReservationsByDateRange('2024-05-9', '2024-05-16')?>
 
 
                 </form>

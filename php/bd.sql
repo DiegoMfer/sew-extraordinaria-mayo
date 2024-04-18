@@ -25,9 +25,11 @@ CREATE TABLE Recurso_turistico (
 CREATE TABLE Reserva (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nombre_usuario VARCHAR(255),
+    id_recurso INT,
     fecha_inicio DATE NOT NULL,
     fecha_fin DATE NOT NULL,
-    FOREIGN KEY (nombre_usuario) REFERENCES Usuario(nombre)
+    FOREIGN KEY (nombre_usuario) REFERENCES Usuario(nombre),
+    FOREIGN KEY (id_recurso) REFERENCES Recurso_turistico(id)
 );
 
 CREATE TABLE Presupuesto (
@@ -59,3 +61,11 @@ VALUES
     ('Faro de Cap de Barbaria', 'Faro', 'Contempla las impresionantes vistas desde el Faro de Cap de Barbaria en Formentera, especialmente al atardecer.', NULL, 4.00),
     ('Fiesta de Sant Joan', 'Evento', 'Únete a la celebración de la Fiesta de Sant Joan en Mallorca, llena de tradición, música y fuegos artificiales.', NULL, 0.00),
     ('Necrópolis de Puig des Molins', 'Arqueológico', 'Explora las antiguas tumbas fenicias en este fascinante sitio arqueológico en Ibiza.', NULL, 7.00);
+
+INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin) 
+VALUES 
+    ('admin', 1, '2024-05-10', '2024-05-15'),
+    ('admin', 2, '2024-06-20', '2024-06-25'),
+    ('admin', 4, '2024-07-03', '2024-07-05'),
+    ('admin', 6, '2024-08-15', '2024-08-20'),
+    ('admin', 9, '2024-09-10', '2024-09-15');
