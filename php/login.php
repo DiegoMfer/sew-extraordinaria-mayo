@@ -166,7 +166,7 @@ $loginForm->handleLogin();
     <main>
         <section>
             <h2>Iniciar sesión</h2>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action="#" method="post">
                 <label for="username">Nombre de usuario:</label>
                 <input type="text" id="username" name="username" required>
 
@@ -185,7 +185,7 @@ $loginForm->handleLogin();
 
         <section>
             <h2>Registrarse</h2>
-            <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form action="#" method="post">
                 <label for="reg-username">Nombre de usuario:</label>
                 <input type="text" id="reg-username" name="reg-username" required>
 

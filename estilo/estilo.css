@@ -30,6 +30,16 @@ h1 {
     background-color: grey;
 }
 
+/*Especificidad : 001*/
+a {
+    display: inline-block;
+    padding: 0.25em 0.5em; 
+    border: 0.1em solid black; 
+    text-decoration: none;
+    border-radius: 0.5em
+}
+
+
 /*Especificidad : 011*/
 a:hover {
     color:black; 
@@ -58,6 +68,7 @@ section{
     /*Color*/
     color:black;
     background-color: white;
+    border-radius: 0.5em
 }
 
 /*------------------ Table ------------------*/
