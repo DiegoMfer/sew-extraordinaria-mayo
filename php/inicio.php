@@ -99,7 +99,8 @@ class DB
     }
 
 
-    public function getConn(){
+    public function getConn()
+    {
         return $this->conn;
     }
 }
@@ -116,14 +117,17 @@ class Logic
     {
         $this->db = $db;
 
-        if (!empty($_POST['recurso'])) {
-            $selectedResourceId = $_POST['recurso'];
+        if ($this->isRecursoSelected()) {
+            $selectedResourceId = $_SESSION['recurso'];
             $this->selectedRecurso = $this->db->getRecurso($selectedResourceId);
         }
     }
     public function isRecursoSelected()
     {
-        return !empty($_POST['recurso']);
+        if (!empty($_POST['recurso'])) {
+            $_SESSION['recurso'] = $_POST['recurso'];
+        }
+        return !empty($_SESSION['recurso']);
     }
 
     public function getRecursoSelected()
@@ -131,42 +135,47 @@ class Logic
         return $this->selectedRecurso;
     }
 
-    public function getReservationsByDateRange( $start_date, $end_date) {
+    public function getReservationsByDateRange($start_date, $end_date)
+    {
         // Create a connection
         $conn = $this->db->getConn();
-    
+
         $resource_id = $this->getRecursoSelected()->id;
-    
+
         // Prepare the SQL query
         $sql = "SELECT * 
                 FROM Reserva 
                 WHERE id_recurso = ? 
                 AND fecha_inicio BETWEEN ? AND ? 
                 AND fecha_fin BETWEEN ? AND ?";
-    
+
         // Prepare the statement
         $stmt = $conn->prepare($sql);
-    
+
         // Bind parameters
         $stmt->bind_param('issss', $resource_id, $start_date, $end_date, $start_date, $end_date);
-    
+
         // Execute the query
         $stmt->execute();
-    
+
         // Get result
         $result = $stmt->get_result();
-    
+
         // Fetch the results
         $reservations = $result->fetch_all(MYSQLI_ASSOC);
-    
+
         // Close statement and connection
         $stmt->close();
 
         return $reservations;
     }
 
+    public function getNumberOfReservationsAvairable($start_date, $end_date)
+    {
+        $numberOfReservations = count($this->getReservationsByDateRange($start_date, $end_date));
+        return $this->getRecursoSelected()->limite_ocupacion - $numberOfReservations;
+    }
 
-    
 }
 
 
@@ -243,13 +252,24 @@ $lg = new Logic($db);
             </section>
 
             <section>
-                <h2>Reservar Recurso Turístico -
-                    <?php echo $lg->getRecursoSelected()->nombre; ?>
-                </h2>
-                    <?php echo $lg->getReservationsByDateRange('2024-05-9', '2024-05-16')?>
+                <h2>Reservar Recurso Turístico - <?php echo $lg->getRecursoSelected()->nombre; ?></h2>
 
+                <form action="#" method="post">
+                    <label for="start_date">Fecha de inicio:</label>
+                    <input type="date" id="start_date" name="start_date" required>
+                    <label for="end_date">Fecha de fin:</label>
+                    <input type="date" id="end_date" name="end_date" required>
 
+                    <input type="submit" value="Consultar reservas">
                 </form>
+                <?php
+                if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+                    $start_date = $_POST['start_date'];
+                    $end_date = $_POST['end_date'];
+                    $remaining_reservations = $lg->getNumberOfReservationsAvairable($start_date, $end_date);
+                    echo "<p>Rerservas restantes entre $start_date y $end_date: $remaining_reservations</p>";
+                }
+                ?>
             </section>
 
 
