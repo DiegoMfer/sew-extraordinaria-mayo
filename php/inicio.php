@@ -2,7 +2,7 @@
 session_start();
 
 
-$_SESSION['username'] = 'test';
+$_SESSION['username'] = 'admin';
 class Login
 {
 
@@ -99,6 +99,26 @@ class DB
     }
 
 
+    public function addReserva($username, $id_recurso, $start_date, $end_date)
+    {
+        // Prepare the SQL statement to insert a new reservation
+        $sql = "INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin) VALUES (?, ?, ?, ?)";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind the parameters
+        $stmt->bind_param("siss", $username, $id_recurso, $start_date, $end_date);
+
+        // Execute the statement
+        $success = $stmt->execute();
+
+        
+
+        // Close the statement
+        $stmt->close();
+    }
+
     public function getConn()
     {
         return $this->conn;
@@ -170,10 +190,30 @@ class Logic
         return $reservations;
     }
 
-    public function getNumberOfReservationsAvairable($start_date, $end_date)
+    public function getNumberOfReservationsAvailable($start_date, $end_date)
     {
         $numberOfReservations = count($this->getReservationsByDateRange($start_date, $end_date));
         return $this->getRecursoSelected()->limite_ocupacion - $numberOfReservations;
+    }
+
+    public function reservePlazas($number){
+            $username = $_SESSION['username'];
+            $id_recurso =  $_SESSION['recurso'];
+            $start_date = $_SESSION['start_date'];
+            $end_date = $_SESSION['end_date'];
+
+            $plazas = $this->getNumberOfReservationsAvailable($start_date, $end_date);
+
+            if( $plazas < $number){
+                echo "No hay plazas suficientes.";
+                return;
+            }
+
+            for($i = 0; $i < $number; $i++){
+                $this->db->addReserva($username, $id_recurso, $start_date, $end_date);
+            }
+
+            echo "$number reservas añadida correctamente.";
     }
 
 }
@@ -264,12 +304,32 @@ $lg = new Logic($db);
                 </form>
                 <?php
                 if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
-                    $start_date = $_POST['start_date'];
-                    $end_date = $_POST['end_date'];
-                    $remaining_reservations = $lg->getNumberOfReservationsAvairable($start_date, $end_date);
-                    echo "<p>Rerservas restantes entre $start_date y $end_date: $remaining_reservations</p>";
+                    $_SESSION['start_date'] = $_POST['start_date'];
+                    $_SESSION['end_date'] = $_POST['end_date'];
+                    
                 }
                 ?>
+
+                <?php if (isset($_SESSION['start_date']) && isset($_SESSION['end_date'])): ?>
+                    <?php 
+                    $remaining_reservations = $lg->getNumberOfReservationsAvailable($_SESSION['start_date'], $_SESSION['end_date']);
+                    echo "<p>Reservas restantes entre {$_SESSION['start_date']} y {$_SESSION['end_date']} para {$_SESSION['recurso']}: $remaining_reservations</p>";
+                    ?>
+                    <form action="#" method="post">
+                        <label for="number">Establecer número de plazas</label>
+                        <input type="number" id="plazas" name="plazas" required>
+                        <input type="submit" value="Reservar plazas">
+                    </form>
+
+                    <?php
+                        if (isset($_POST['plazas'])) {
+                            $lg->reservePlazas($_POST['plazas']);
+                        }
+                    ?>
+                </form>
+                    
+                <?php endif; ?>
+
             </section>
 
 
