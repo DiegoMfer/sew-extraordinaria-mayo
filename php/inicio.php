@@ -32,6 +32,32 @@ class DB
         }
     }
 
+    public function getPresupuestosUsuario($username)
+    {
+        // Prepare the SQL query
+        $sql = "SELECT * FROM Presupuesto WHERE nombre_usuario = ?";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind parameter
+        $stmt->bind_param('s', $username);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get result
+        $result = $stmt->get_result();
+
+        // Fetch the results
+        $presupuestos = $result->fetch_all(MYSQLI_ASSOC);
+
+        // Close statement
+        $stmt->close();
+
+        return $presupuestos;
+    }
+
     public function getRecursos()
     {
 
@@ -57,6 +83,32 @@ class DB
             echo "0 results";
         }
         return $recursos;
+    }
+
+    public function getReservasUsuario($username)
+    {
+        // Prepare the SQL query
+        $sql = "SELECT * FROM Reserva WHERE nombre_usuario = ?";
+
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
+
+        // Bind parameter
+        $stmt->bind_param('s', $username);
+
+        // Execute the query
+        $stmt->execute();
+
+        // Get result
+        $result = $stmt->get_result();
+
+        // Fetch the results
+        $reservas = $result->fetch_all(MYSQLI_ASSOC);
+
+        // Close statement
+        $stmt->close();
+
+        return $reservas;
     }
 
     public function getRecurso($recursoId)
@@ -99,25 +151,23 @@ class DB
     }
 
 
-    public function addReserva($username, $id_recurso, $start_date, $end_date)
-    {
-        // Prepare the SQL statement to insert a new reservation
-        $sql = "INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin) VALUES (?, ?, ?, ?)";
+    public function addReserva($username, $id_recurso, $start_date, $end_date, $precio)
+{
+    // Prepare the SQL statement to insert a new reservation
+    $sql = "INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin, precio) VALUES (?, ?, ?, ?, ?)";
 
-        // Prepare the statement
-        $stmt = $this->conn->prepare($sql);
+    // Prepare the statement
+    $stmt = $this->conn->prepare($sql);
 
-        // Bind the parameters
-        $stmt->bind_param("siss", $username, $id_recurso, $start_date, $end_date);
+    // Bind the parameters
+    $stmt->bind_param("sissd", $username, $id_recurso, $start_date, $end_date, $precio);
 
-        // Execute the statement
-        $success = $stmt->execute();
+    // Execute the statement
+    $success = $stmt->execute();
 
-        
-
-        // Close the statement
-        $stmt->close();
-    }
+    // Close the statement
+    $stmt->close();
+}
 
     public function getConn()
     {
@@ -196,24 +246,47 @@ class Logic
         return $this->getRecursoSelected()->limite_ocupacion - $numberOfReservations;
     }
 
-    public function reservePlazas($number){
-            $username = $_SESSION['username'];
-            $id_recurso =  $_SESSION['recurso'];
-            $start_date = $_SESSION['start_date'];
-            $end_date = $_SESSION['end_date'];
+    public function reservePlazas($number)
+    {
+        $username = $_SESSION['username'];
+        $id_recurso = $_SESSION['recurso'];
+        $start_date = $_SESSION['start_date'];
+        $end_date = $_SESSION['end_date'];
 
-            $plazas = $this->getNumberOfReservationsAvailable($start_date, $end_date);
+        $plazas = $this->getNumberOfReservationsAvailable($start_date, $end_date);
 
-            if( $plazas < $number){
-                echo "No hay plazas suficientes.";
-                return;
-            }
+        if ($plazas < $number) {
+            echo "No hay plazas suficientes.";
+            return;
+        }
 
-            for($i = 0; $i < $number; $i++){
-                $this->db->addReserva($username, $id_recurso, $start_date, $end_date);
-            }
+        for ($i = 0; $i < $number; $i++) {
 
-            echo "$number reservas añadida correctamente.";
+            $start_date_object = new DateTime($start_date);
+            $end_date_object = new DateTime($end_date);
+            $difference = $start_date_object->diff($end_date_object);
+
+            $total_price = $this->selectedRecurso->precio * $difference->days ;
+            $this->db->addReserva($username, $id_recurso, $start_date, $end_date, $total_price);
+        }
+
+        echo "$number reservas añadida correctamente.";
+    }
+
+    public function getReservasUsuario()
+    {
+        $result = $this->db->getReservasUsuario($_SESSION['username']);
+        return $result;
+    }
+
+    public function getPresupuestosUsuario()
+    {
+        $result = $this->db->getPresupuestosUsuario($_SESSION['username']);
+        return $result;
+    }
+
+    public function savePresupuestoForUser(){
+        
     }
 
 }
@@ -255,86 +328,151 @@ $lg = new Logic($db);
 
     <!--Contenido que diferencia al documento html del resto del documento-->
     <main>
-        <section>
-            <h2>Mostrar Recurso Turístico</h2>
-            <form action="#" method="post">
-                <label for="recurso">Selecciona un recurso turístico:</label>
-                <select id="recurso" name="recurso">
-                    <?php foreach ($db->getRecursos() as $indice => $recurso): ?>
-                        <option value="<?php echo $indice + 1; ?>"><?php echo $recurso->nombre; ?></option>
-                    <?php endforeach; ?>
-                </select>
-                <input type="submit" value="Mostrar información">
-            </form>
-        </section>
+
+        <?php if ($login->isUserLoggedIn()): ?>
 
 
 
-
-        <?php if ($lg->isRecursoSelected()): ?>
             <section>
-                <h2>Información del Recurso Turístico</h2>
-                <?php
-                $selectedRecurso = $lg->getRecursoSelected();
-
-                if ($selectedRecurso !== null): ?>
-                    <p>
-                        ID: <?php echo $selectedRecurso->id; ?> <br>
-                        Nombre: <?php echo $selectedRecurso->nombre; ?> <br>
-                        Tipo: <?php echo $selectedRecurso->tipo; ?> <br>
-                        Descripción: <?php echo $selectedRecurso->descripcion; ?> <br>
-                        Límite de Ocupación: <?php echo $selectedRecurso->limite_ocupacion; ?> <br>
-                        Precio: <?php echo $selectedRecurso->precio; ?> <br>
-                    </p>
-                <?php else: ?>
-                    <p>El recurso seleccionado no se encontró en la base de datos.</p>
-                <?php endif; ?>
+                <h2>Mostrar Recurso Turístico</h2>
+                <form action="#" method="post">
+                    <label for="recurso">Selecciona un recurso turístico:</label>
+                    <select id="recurso" name="recurso">
+                        <?php foreach ($db->getRecursos() as $indice => $recurso): ?>
+                            <option value="<?php echo $indice + 1; ?>"><?php echo $recurso->nombre; ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="submit" value="Mostrar información">
+                </form>
             </section>
 
-            <section>
-                <h2>Reservar Recurso Turístico - <?php echo $lg->getRecursoSelected()->nombre; ?></h2>
 
-                <form action="#" method="post">
-                    <label for="start_date">Fecha de inicio:</label>
-                    <input type="date" id="start_date" name="start_date" required>
-                    <label for="end_date">Fecha de fin:</label>
-                    <input type="date" id="end_date" name="end_date" required>
 
-                    <input type="submit" value="Consultar reservas">
-                </form>
-                <?php
-                if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
-                    $_SESSION['start_date'] = $_POST['start_date'];
-                    $_SESSION['end_date'] = $_POST['end_date'];
-                    
-                }
-                ?>
 
-                <?php if (isset($_SESSION['start_date']) && isset($_SESSION['end_date'])): ?>
-                    <?php 
-                    $remaining_reservations = $lg->getNumberOfReservationsAvailable($_SESSION['start_date'], $_SESSION['end_date']);
-                    echo "<p>Reservas restantes entre {$_SESSION['start_date']} y {$_SESSION['end_date']} para {$_SESSION['recurso']}: $remaining_reservations</p>";
-                    ?>
-                    <form action="#" method="post">
-                        <label for="number">Establecer número de plazas</label>
-                        <input type="number" id="plazas" name="plazas" required>
-                        <input type="submit" value="Reservar plazas">
-                    </form>
-
+            <?php if ($lg->isRecursoSelected()): ?>
+                <section>
+                    <h2>Información del Recurso Turístico</h2>
                     <?php
+                    $selectedRecurso = $lg->getRecursoSelected();
+
+                    if ($selectedRecurso !== null): ?>
+                        <p>
+                            ID: <?php echo $selectedRecurso->id; ?> <br>
+                            Nombre: <?php echo $selectedRecurso->nombre; ?> <br>
+                            Tipo: <?php echo $selectedRecurso->tipo; ?> <br>
+                            Descripción: <?php echo $selectedRecurso->descripcion; ?> <br>
+                            Límite de Ocupación: <?php echo $selectedRecurso->limite_ocupacion; ?> <br>
+                            Precio: <?php echo $selectedRecurso->precio; ?> <br>
+                        </p>
+                    <?php else: ?>
+                        <p>El recurso seleccionado no se encontró en la base de datos.</p>
+                    <?php endif; ?>
+                </section>
+
+                <section>
+                    <h2>Reservar Recurso Turístico - <?php echo $lg->getRecursoSelected()->nombre; ?></h2>
+
+                    <form action="#" method="post">
+                        <label for="start_date">Fecha de inicio:</label>
+                        <input type="date" id="start_date" name="start_date" required>
+                        <label for="end_date">Fecha de fin:</label>
+                        <input type="date" id="end_date" name="end_date" required>
+
+                        <input type="submit" value="Consultar reservas">
+                    </form>
+                    <?php
+                    if (isset($_POST['start_date']) && isset($_POST['end_date'])) {
+                        $_SESSION['start_date'] = $_POST['start_date'];
+                        $_SESSION['end_date'] = $_POST['end_date'];
+
+                    }
+                    ?>
+
+                    <?php if (isset($_SESSION['start_date']) && isset($_SESSION['end_date'])): ?>
+                        <?php
+                        $remaining_reservations = $lg->getNumberOfReservationsAvailable($_SESSION['start_date'], $_SESSION['end_date']);
+                        echo "<p>Reservas restantes entre {$_SESSION['start_date']} y {$_SESSION['end_date']} para {$_SESSION['recurso']}: $remaining_reservations</p>";
+                        ?>
+                        <form action="#" method="post">
+                            <label for="number">Establecer número de plazas</label>
+                            <input type="number" id="plazas" name="plazas" required>
+                            <input type="submit" value="Reservar plazas">
+                        </form>
+
+                        <?php
                         if (isset($_POST['plazas'])) {
                             $lg->reservePlazas($_POST['plazas']);
                         }
-                    ?>
-                </form>
-                    
-                <?php endif; ?>
+                        ?>
+                        </form>
 
+                    <?php endif; ?>
+
+                </section>
+
+
+                <section>
+                    <h2>Realizar presupuesto</h2>
+                    <?php if (count($lg->getReservasUsuario()) == 0): ?>
+                        <p>Todavía no hay reservas</p>
+                    <?php else: ?>
+
+                        <form action="#" method="post">
+
+                            <label for="guardar_presupuesto">Guardar presupuesto</label>
+                            <input type="radio" id="guardar_presupuesto" name="boton_presupuesto">
+
+                            <label for="eliminar_presupuestos">Eliminar presupuestos</label>
+                            <input type="radio" id="eliminar_presupuestos" name="boton_presupuesto">
+
+                            <input type="submit" value="Ejecutar comando">
+                        </form>
+
+                        <?php
+                            if (isset($_POST['guardar_presupuesto'])) {
+                                $lg->savePresupuestoForUser();
+                            }
+
+                            if (isset($_POST['eliminar_presupuestos'])) {
+                                $lg->deleteAllPresupuestosForUser();
+                            }
+                            
+                             
+
+                        ?>
+
+                        <h3>Presupuestos realizados</h3>
+
+                        <?php if (count($lg->getPresupuestosUsuario()) == 0): ?>
+                            <p>Todavía no hay presupuestos</p>
+                        <?php else: ?>
+                            <?php foreach ($lg->getPresupuestosUsuario() as $presupuesto): ?>
+                                <p><?= $presupuesto['id'] ?> - <?= $presupuesto['precio'] ?></p>
+                            <?php endforeach; ?>
+
+                        <?php endif; ?>
+
+
+                        <h3>Recursos reservados <h3>
+                                <?php foreach ($lg->getReservasUsuario() as $reserva): ?>
+                                    <p><?= $db->getRecurso($reserva['id_recurso'])->nombre ?> - <?= $reserva['fecha_inicio'] ?> -
+                                        <?= $reserva['fecha_fin'] ?>
+                                    </p>
+                                <?php endforeach; ?>
+
+                            <?php endif; ?>
+                </section>
+
+            <?php endif; ?>
+
+        <?php else: ?>
+
+            <section>
+                <h2>Usuario sin sesión</h2>
+                <p>Inicia sesión para poder acceder a la aplicación</p>
             </section>
 
-
         <?php endif; ?>
-
     </main>
 
     <!--Tiene que ser el mismo para todo el documento -->
