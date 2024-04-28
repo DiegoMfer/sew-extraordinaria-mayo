@@ -1,8 +1,6 @@
 <?php
 session_start();
 
-
-$_SESSION['username'] = 'admin';
 class Login
 {
 
@@ -111,6 +109,63 @@ class DB
         return $reservas;
     }
 
+    public function savePresupuestoForUser($username, $precio)
+    {
+        $sql = "INSERT INTO Presupuesto (nombre_usuario, precio) VALUES (?, ?)";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('sd', $username, $precio); // 's' para string, 'd' para decimal
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+
+            $stmt->close();
+            return true;
+        } else {
+
+            $stmt->close();
+            return false;
+        }
+    }
+
+    public function deleteAllPresupuestosForUser($username)
+    {
+        $sql = "DELETE FROM Presupuesto WHERE nombre_usuario = ?";
+
+        $stmt = $this->conn->prepare($sql);
+
+        $stmt->bind_param('s', $username);
+
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
+
+    public function deleteAllReservastosForUser($username)
+    {
+        $sql = "DELETE FROM Reserva WHERE nombre_usuario = ?";
+
+        $stmt = $this->conn->prepare($sql);
+        $stmt->bind_param('s', $username);
+        $stmt->execute();
+
+        if ($stmt->affected_rows > 0) {
+            $stmt->close();
+            return true;
+        } else {
+            $stmt->close();
+            return false;
+        }
+    }
+
     public function getRecurso($recursoId)
     {
         // Prepare the SQL query with a WHERE clause to select a specific resource by ID
@@ -152,22 +207,22 @@ class DB
 
 
     public function addReserva($username, $id_recurso, $start_date, $end_date, $precio)
-{
-    // Prepare the SQL statement to insert a new reservation
-    $sql = "INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin, precio) VALUES (?, ?, ?, ?, ?)";
+    {
+        // Prepare the SQL statement to insert a new reservation
+        $sql = "INSERT INTO Reserva (nombre_usuario, id_recurso, fecha_inicio, fecha_fin, precio) VALUES (?, ?, ?, ?, ?)";
 
-    // Prepare the statement
-    $stmt = $this->conn->prepare($sql);
+        // Prepare the statement
+        $stmt = $this->conn->prepare($sql);
 
-    // Bind the parameters
-    $stmt->bind_param("sissd", $username, $id_recurso, $start_date, $end_date, $precio);
+        // Bind the parameters
+        $stmt->bind_param("sissd", $username, $id_recurso, $start_date, $end_date, $precio);
 
-    // Execute the statement
-    $success = $stmt->execute();
+        // Execute the statement
+        $success = $stmt->execute();
 
-    // Close the statement
-    $stmt->close();
-}
+        // Close the statement
+        $stmt->close();
+    }
 
     public function getConn()
     {
@@ -266,7 +321,7 @@ class Logic
             $end_date_object = new DateTime($end_date);
             $difference = $start_date_object->diff($end_date_object);
 
-            $total_price = $this->selectedRecurso->precio * $difference->days ;
+            $total_price = $this->selectedRecurso->precio * $difference->days;
             $this->db->addReserva($username, $id_recurso, $start_date, $end_date, $total_price);
         }
 
@@ -285,8 +340,32 @@ class Logic
         return $result;
     }
 
-    public function savePresupuestoForUser(){
-        
+    public function savePresupuestoForUser()
+    {
+        $this->getReservasUsuario();
+        $reservas = $this->getReservasUsuario();
+
+        $precio = 0;
+        foreach ($reservas as $reserva) {
+            $recurso = $this->db->getRecurso($reserva['id_recurso']);
+
+            $precio += $recurso->precio;
+        }
+
+        $result = $this->db->savePresupuestoForUser($_SESSION['username'], $precio);
+        return $result;
+    }
+
+    public function deleteAllPresupuestosForUser()
+    {
+        $result = $this->db->deleteAllPresupuestosForUser($_SESSION['username']);
+        return $result;
+    }
+
+    public function deleteAllReservasForUser()
+    {
+        $result = $this->db->deleteAllReservastosForUser($_SESSION['username']);
+        return $result;
     }
 
 }
@@ -419,27 +498,36 @@ $lg = new Logic($db);
 
                         <form action="#" method="post">
 
-                            <label for="guardar_presupuesto">Guardar presupuesto</label>
-                            <input type="radio" id="guardar_presupuesto" name="boton_presupuesto">
 
-                            <label for="eliminar_presupuestos">Eliminar presupuestos</label>
-                            <input type="radio" id="eliminar_presupuestos" name="boton_presupuesto">
+                            <label for="comando">Selecciona una acción</label>
+                            <select id="comando" name="comando">
+                                <option value="guardar_presupuesto">Guardar presupuesto</option>
+                                <option value="eliminar_presupuestos">Eliminar presupuestos</option>
+                                <option value="eliminar_reservas">Eliminar reservas</option>
+                            </select>
+
 
                             <input type="submit" value="Ejecutar comando">
                         </form>
 
                         <?php
-                            if (isset($_POST['guardar_presupuesto'])) {
+
+
+                        if (isset($_POST['comando'])) {
+
+                            if ($_POST['comando'] == "guardar_presupuesto") {
                                 $lg->savePresupuestoForUser();
                             }
 
-                            if (isset($_POST['eliminar_presupuestos'])) {
+                            if ($_POST['comando'] == "eliminar_presupuestos") {
                                 $lg->deleteAllPresupuestosForUser();
                             }
-                            
-                             
 
-                        ?>
+                            if ($_POST['comando'] == "eliminar_reservas") {
+                                $lg->deleteAllReservasForUser();
+                            }
+
+                        }?>
 
                         <h3>Presupuestos realizados</h3>
 
@@ -452,15 +540,18 @@ $lg = new Logic($db);
 
                         <?php endif; ?>
 
+                        <h3>Recursos reservados </h3>
 
-                        <h3>Recursos reservados <h3>
-                                <?php foreach ($lg->getReservasUsuario() as $reserva): ?>
-                                    <p><?= $db->getRecurso($reserva['id_recurso'])->nombre ?> - <?= $reserva['fecha_inicio'] ?> -
-                                        <?= $reserva['fecha_fin'] ?>
-                                    </p>
-                                <?php endforeach; ?>
-
-                            <?php endif; ?>
+                        <?php if (count($lg->getReservasUsuario()) == 0): ?>
+                            <p>Todavía no hay reseras</p>
+                        <?php else: ?>
+                            <?php foreach ($lg->getReservasUsuario() as $reserva): ?>
+                                <p><?= $db->getRecurso($reserva['id_recurso'])->nombre ?> - <?= $reserva['fecha_inicio'] ?> -
+                                    <?= $reserva['fecha_fin'] ?>
+                                </p>
+                            <?php endforeach; ?>
+                        <?php endif; ?>
+                    <?php endif; ?>
                 </section>
 
             <?php endif; ?>
