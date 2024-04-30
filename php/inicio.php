@@ -475,7 +475,7 @@ $lg = new Logic($db);
                         echo "<p>Reservas restantes entre {$_SESSION['start_date']} y {$_SESSION['end_date']} para {$_SESSION['recurso']}: $remaining_reservations</p>";
                         ?>
                         <form action="#" method="post">
-                            <label for="number">Establecer número de plazas</label>
+                            <label for="plazas">Establecer número de plazas</label>
                             <input type="number" id="plazas" name="plazas" required>
                             <input type="submit" value="Reservar plazas">
                         </form>
