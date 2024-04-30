@@ -394,7 +394,7 @@ $lg = new Logic($db);
 
 <body>
     <header>
-        <h1>Escritorio Virtual</h1>
+        <h1>Islas Baleares</h1>
         <nav>
             <a tabindex="1" accesskey="I" href="../index.html">Página principal</a>
             <a tabindex="2" accesskey="G" href="../gastronomia.html">Gastronomía</a>
