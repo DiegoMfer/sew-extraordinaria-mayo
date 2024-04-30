@@ -103,7 +103,7 @@ class LoginForm
 
                 $this->login($username, $password);
               
-                $this->conn->close();
+                
                 exit();
             }             
 
@@ -113,7 +113,7 @@ class LoginForm
 
                 $this->register($regUsername,$regPassword);
 
-                $this->conn->close();
+                
                 exit();
             }
         }
