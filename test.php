@@ -3,94 +3,13 @@ session_start();
 
 class LoginForm
 {
+    private $username;
+    private $password;
     private $error;
-
-    private $conn;
 
     public function __construct()
     {
         $this->error = '';
-
-        $servername = "localhost";
-        $username = "test";
-        $password = "test";
-        $dbname = "sew";
-
-        $this->conn =  new mysqli($servername, $username, $password, $dbname);
-
-        if ($this->conn->connect_error) {
-            die("Error de conexión a la base de datos: " . $this->conn->connect_error);
-        }
-    }
-
-
-    public function logMessage($usuarioNombre, $descripcion){
-
-        // Consulta SQL para insertar el nuevo elemento
-        $sql = "INSERT INTO login (nombre_usuario, descripcion) VALUES ('$usuarioNombre', '$descripcion')";
-        $this->conn->query($sql);
-       
-    }
-
-    public function login($username, $password){
-        $sql = "SELECT * FROM Usuario WHERE nombre = '". $username."' AND contrasena = '". $password ."'";
-        $result = $this->conn->query($sql);
-
-        if ($result->num_rows == 1) {
-            // Las credenciales son válidas, guardar el nombre de usuario en la sesión
-            $_SESSION['username'] = $username;
-
-
-            //------------------------------------ registro del loggin en la base de datos ------------------------------
-            // Datos del nuevo elemento a insertar
-            $usuarioNombre = $_POST["username"];
-            $fechaActual = date("Y-m-d H:i:s");
-            $descripcion = "Intento de inicio de sesión con éxito para $usuarioNombre con fecha: $fechaActual ";
-
-            $this->logMessage($usuarioNombre, $descripcion);
-           
-            //------------------------------------ registro del loggin en la base de datos ------------------------------
-
-            // Redireccionar a la página de inicio
-            header("Location: inicio.php");
-            exit();
-        } else {
-            // Las credenciales son inválidas, mostrar mensaje de error
-            $this->error = "Usuario o contraseña incorrectos";
-            $fechaActual = date("Y-m-d H:i:s");
-            $descripcion = "Intento de inicio de sesión sin éxito para $username con fecha: $fechaActual ";
-
-            $this->logMessage($username, $descripcion);
-            $this->logError($this->error);
-        }
-        
-    }
-
-
-    public function register($regUsername, $regPassword){
-            
-
-        
-        // Verificar si el nombre de usuario ya existe en la base de datos
-        $checkUserQuery = "SELECT * FROM Usuario WHERE nombre = '$regUsername'";
-        $checkUserResult = $this->conn->query($checkUserQuery);
-
-        if ($checkUserResult->num_rows > 0) {
-            $registrationError = "El nombre de usuario ya está en uso";
-            $this->error = $registrationError;
-            $this->logError($this->error);
-        } else {
-            // Insertar el nuevo usuario en la base de datos
-            $insertUserQuery = "INSERT INTO Usuario (nombre, contrasena) VALUES ('$regUsername', '$regPassword')";
-
-            if ($this->conn->query($insertUserQuery) === TRUE) {
-                $registrationSuccess = "Registro exitoso, puedes iniciar sesión";
-            } else {
-                $registrationError = "Error en el registro de usuario: " . $this->conn->error;
-                $this->error = $registrationError;
-                $this->logError($this->error);
-            }
-        }
     }
 
     public function handleLogin()
@@ -98,23 +17,102 @@ class LoginForm
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
             if (isset($_POST["username"]) && isset($_POST["password"])) {
-                $username = $_POST["username"];
-                $password = $_POST["password"];
+                $this->username = $_POST["username"];
+                $this->password = $_POST["password"];
 
-                $this->login($username, $password);
-              
-                
-                exit();
-            }             
+                // Conexión a la base de datos
+                $servername = "localhost";
+                $username = "test";
+                $password = "test";
+                $dbname = "sew";
 
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Comprobar la conexión
+                if ($conn->connect_error) {
+                    die("Error de conexión a la base de datos: " . $conn->connect_error);
+                }
+
+                // Consulta SQL para verificar el usuario y la contraseña
+                $sql = "SELECT * FROM Usuario WHERE nombre = '" . $this->username . "' AND contrasena = '" . $this->password . "'";
+                $result = $conn->query($sql);
+
+
+
+
+
+                if ($result->num_rows == 1) {
+                    // Las credenciales son válidas, guardar el nombre de usuario en la sesión
+                    $_SESSION['username'] = $this->username;
+
+
+                    //------------------------------------ registro del loggin en la base de datos ------------------------------
+                    // Datos del nuevo elemento a insertar
+                    $usuarioNombre = $_POST["username"];
+                    $fechaActual = date("Y-m-d H:i:s");
+                    $descripcion = "Intento de inicio de sesión con éxito para $usuarioNombre con fecha: $fechaActual ";
+
+                    // Consulta SQL para insertar el nuevo elemento
+                    $sql = "INSERT INTO login (usuario_nombre, descripcion) VALUES ('$usuarioNombre', '$descripcion')";
+
+                    if ($conn->query($sql) === TRUE) {
+                        echo "Nuevo elemento insertado correctamente.";
+                    } else {
+                        echo "Error al insertar el elemento: " . $conn->error;
+                    }
+                    //------------------------------------ registro del loggin en la base de datos ------------------------------
+
+                    // Redireccionar a la página de inicio
+                    header("Location: inicio.php");
+                    exit();
+                } else {
+                    // Las credenciales son inválidas, mostrar mensaje de error
+                    $this->error = "Usuario o contraseña incorrectos";
+                    $this->logError($this->error);
+                }
+
+
+
+
+                $conn->close();
+            }
+
+            //-------------------------------- Registro de usuario --------------
             if (isset($_POST["reg-username"]) && isset($_POST["reg-password"])) {
                 $regUsername = $_POST["reg-username"];
                 $regPassword = $_POST["reg-password"];
 
-                $this->register($regUsername,$regPassword);
+                // Conexión a la base de datos
+                $servername = "localhost";
+                $username = "test";
+                $password = "test";
+                $dbname = "sew";
 
-                
-                exit();
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                // Comprobar la conexión
+                if ($conn->connect_error) {
+                    die("Error de conexión a la base de datos: " . $conn->connect_error);
+                }
+
+                // Verificar si el nombre de usuario ya existe en la base de datos
+                $checkUserQuery = "SELECT * FROM usuario WHERE nombre = '$regUsername'";
+                $checkUserResult = $conn->query($checkUserQuery);
+
+                if ($checkUserResult->num_rows > 0) {
+                    $registrationError = "El nombre de usuario ya está en uso";
+                } else {
+                    // Insertar el nuevo usuario en la base de datos
+                    $insertUserQuery = "INSERT INTO usuario (nombre, contrasena) VALUES ('$regUsername', '$regPassword')";
+
+                    if ($conn->query($insertUserQuery) === TRUE) {
+                        $registrationSuccess = "Registro exitoso, puedes iniciar sesión";
+                    } else {
+                        $registrationError = "Error en el registro de usuario: " . $conn->error;
+                    }
+                }
+
+                $conn->close();
             }
         }
     }
@@ -127,10 +125,6 @@ class LoginForm
     public function getError()
     {
         return $this->error;
-    }
-
-    public function getConnection(){
-        return $this->conn;
     }
 }
 
