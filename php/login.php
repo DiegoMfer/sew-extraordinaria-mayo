@@ -137,7 +137,6 @@ class LoginForm
 // Crear una instancia del formulario de inicio de sesión
 $loginForm = new LoginForm();
 $loginForm->handleLogin();
-$loginForm->getConnection()->close();
 
 ?>
 
