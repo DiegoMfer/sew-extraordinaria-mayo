@@ -128,10 +128,6 @@ class LoginForm
     {
         return $this->error;
     }
-
-    public function getConnection(){
-        return $this->conn;
-    }
 }
 
 // Crear una instancia del formulario de inicio de sesión
