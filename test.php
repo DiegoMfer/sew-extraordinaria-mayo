@@ -1,26 +1,19 @@
 <?php
-// Define some data
-$title = "Welcome to My Website";
-$paragraphs = [
-    "This is the first paragraph of my website.",
-    "This is the second paragraph.",
-    "And this is the third one."
-];
+$servername = "localhost";
+$username = "test";
+$password = "test";
+$dbname = "sew";
 
-// Start HTML output
-echo "<!DOCTYPE html>\n";
-echo "<html>\n";
-echo "<head>\n";
-echo "<title>$title</title>\n";
-echo "</head>\n";
-echo "<body>\n";
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
 
-// Output paragraphs
-foreach ($paragraphs as $paragraph) {
-    echo "<p>$paragraph</p>\n";
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+} else {
+    echo "Connected successfully";
 }
 
-// End HTML output
-echo "</body>\n";
-echo "</html>";
+// Close connection
+$conn->close();
 ?>
