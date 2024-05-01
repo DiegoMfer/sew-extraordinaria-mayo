@@ -89,7 +89,7 @@ class Index {
     }
 
     ultimaVezActualizado(){
-      $("main section:eq(5)").append("<p>"+ document.lastModified+"</p>")
+      $("main section:eq(4)").append("<p>"+ document.lastModified+"</p>")
     }
 
 
