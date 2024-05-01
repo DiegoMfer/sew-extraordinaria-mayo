@@ -22,6 +22,7 @@ class Rutas {
               $("main section:last").append(
                 "<p> Tipo ruta: " + tipo_ruta + "</p>"
               );
+              
               //------------------- transporte ----------------------------
               let transporte = $(this).find("transporte").text();
               $("main section:last").append(

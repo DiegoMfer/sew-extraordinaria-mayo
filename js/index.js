@@ -44,7 +44,7 @@ class Index {
                 datos += "<p> Enlace: <a href='" + article.link + "'>" + article.link + "</a></p>";
                 datos += "<p> ------------------------------------------------ </p>";
             });
-            $("main section:eq(2)").append(datos);
+            $("main section:eq(2)").append(datos.normalize("NFC"));
             $("main section:eq(2) button").attr("disabled", "disabled");
         });
     }
