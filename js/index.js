@@ -44,7 +44,7 @@ class Index {
                 datos += "<p> Enlace: <a href='" + article.link + "'>" + article.link + "</a></p>";
                 datos += "<p> ------------------------------------------------ </p>";
             });
-            $("main section:eq(2)").append(datos);
+            $("main section:eq(2)").append(datos.normalize("NFC"));
             $("main section:eq(2) button").attr("disabled", "disabled");
         });
     }
@@ -89,7 +89,7 @@ class Index {
     }
 
     ultimaVezActualizado(){
-      $("main section:eq(5)").append("<p>"+ document.lastModified+"</p>")
+      $("main section:eq(4)").append("<p>"+ document.lastModified+"</p>")
     }
 
 

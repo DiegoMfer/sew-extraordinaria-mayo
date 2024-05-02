@@ -36,12 +36,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="200 metros"></distancia_hito>
                 <galeria_fotos>
-                    <foto>calacomte1.jpg</foto>
-                    <foto>calacomte2.jpg</foto>
-                    <foto>calacomte3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>calacomte.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -54,12 +54,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="150 metros"></distancia_hito>
                 <galeria_fotos>
-                    <foto>calabassa1.jpg</foto>
-                    <foto>calabassa2.jpg</foto>
-                    <foto>calabassa3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>calabassa.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -72,12 +72,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="300 metros"></distancia_hito>
                 <galeria_fotos>
-                    <foto>esvedra1.jpg</foto>
-                    <foto>esvedra2.jpg</foto>
-                    <foto>esvedra3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>esvedra.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
 
@@ -119,12 +119,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="500 metros"></distancia_hito>
                 <galeria_fotos>
-                    <foto>farcapdepera1.jpg</foto>
-                    <foto>farcapdepera2.jpg</foto>
-                    <foto>farcapdepera3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>farcapdepera.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -137,12 +137,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="1 km"></distancia_hito>
                 <galeria_fotos>
-                    <foto>calabona1.jpg</foto>
-                    <foto>calabona2.jpg</foto>
-                    <foto>calabona3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>calabona.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -155,12 +155,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="800 metros"></distancia_hito>
                 <galeria_fotos>
-                    <foto>puntanamer1.jpg</foto>
-                    <foto>puntanamer2.jpg</foto>
-                    <foto>puntanamer3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>puntanamer.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
         </hitos>
@@ -200,12 +200,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="2 km"></distancia_hito>
                 <galeria_fotos>
-                    <foto>collreis1.jpg</foto>
-                    <foto>collreis2.jpg</foto>
-                    <foto>collreis3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>collreis.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -218,12 +218,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="4 km"></distancia_hito>
                 <galeria_fotos>
-                    <foto>gorgblau1.jpg</foto>
-                    <foto>gorgblau2.jpg</foto>
-                    <foto>gorgblau3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>gorgblau.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
             <hito>
@@ -236,12 +236,12 @@
                 </coordenadas_hito>
                 <distancia_hito distancia="7 km"></distancia_hito>
                 <galeria_fotos>
-                    <foto>torrentpareis1.jpg</foto>
-                    <foto>torrentpareis2.jpg</foto>
-                    <foto>torrentpareis3.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
+                    <foto>paisaje.jpg</foto>
                 </galeria_fotos>
                 <galeria_videos>
-                    <video>torrentpareis.mp4</video>
+                    <video>gastronomia.mp4</video>
                 </galeria_videos>
             </hito>
         </hitos>

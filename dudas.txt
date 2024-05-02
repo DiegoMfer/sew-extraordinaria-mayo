@@ -7,7 +7,6 @@ Planimetría de la ruta usando el archivo KML generado.
 Altimetría de la ruta usando el archivo SVG generado
 
 
---Audio y vídeo no se reproducen
 
 
 --Uso de id en php para el post
