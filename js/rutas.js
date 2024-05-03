@@ -40,7 +40,7 @@ class Rutas {
               );
               //------------------- duracion ----------------------------
               let duracion = $(this).find("duracion").text();
-              $("main section:last").append("<p> Duracion: " + duracion + "</p>");
+              $("main section:last").append("<p> Duracion: " + duracion + " Ejemplo: 6H implica 6 horas</p>");
               //------------------- agencia ----------------------------
               let agencia = $(this).find("agencia").text();
               $("main section:last").append("<p> Agencia: " + agencia + "</p>");
