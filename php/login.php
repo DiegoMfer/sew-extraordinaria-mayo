@@ -156,12 +156,12 @@ $loginForm->handleLogin();
     <header>
         <h1>Islas Baleares</h1>
         <nav>
-            <a tabindex="1" accesskey="I" href="index.html">Página principal</a>
-            <a tabindex="2" accesskey="G" href="gastronomia.html">Gastronomía</a>
-            <a tabindex="3" accesskey="R" href="rutas.html">Rutas</a>
-            <a tabindex="4" accesskey="M" href="meteorologia.html">Meteorología</a>
-            <a tabindex="5" accesskey="J" href="juego.html">Juego</a>
-            <a tabindex="6" accesskey="E" href="reservas.html">Reservas</a>
+            <a tabindex="1" accesskey="I" href="../index.html">Página principal</a>
+            <a tabindex="2" accesskey="G" href="../gastronomia.html">Gastronomía</a>
+            <a tabindex="3" accesskey="R" href="../rutas.html">Rutas</a>
+            <a tabindex="4" accesskey="M" href="../meteorologia.html">Meteorología</a>
+            <a tabindex="5" accesskey="J" href="../juego.html">Juego</a>
+            <a tabindex="6" accesskey="E" href="php/login.php">Reservas</a>
         </nav>
     </header>
     <main>
