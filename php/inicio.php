@@ -403,7 +403,7 @@ $lg = new Logic($db);
             <a tabindex="3" accesskey="R" href="../rutas.html">Rutas</a>
             <a tabindex="4" accesskey="M" href="../meteorologia.html">Meteorología</a>
             <a tabindex="5" accesskey="J" href="../juego.html">Juego</a>
-            <a tabindex="6" accesskey="E" href="php/login.php">Reservas</a>
+            <a tabindex="6" accesskey="E" href="../php/login.php">Reservas</a>
         </nav>
     </header>
 
@@ -453,7 +453,7 @@ $lg = new Logic($db);
                 <section>
                     <h2>Reservar Recurso Turístico - <?php echo $lg->getRecursoSelected()->nombre; ?></h2>
 
-                    <form action="#" method="post">
+                    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                         <label for="start_date">Fecha de inicio:</label>
                         <input type="date" id="start_date" name="start_date" required>
                         <label for="end_date">Fecha de fin:</label>
@@ -474,7 +474,7 @@ $lg = new Logic($db);
                         $remaining_reservations = $lg->getNumberOfReservationsAvailable($_SESSION['start_date'], $_SESSION['end_date']);
                         echo "<p>Reservas restantes entre {$_SESSION['start_date']} y {$_SESSION['end_date']} para {$_SESSION['recurso']}: $remaining_reservations</p>";
                         ?>
-                        <form action="#" method="post">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
                             <label for="plazas">Establecer número de plazas</label>
                             <input type="number" id="plazas" name="plazas" required>
                             <input type="submit" value="Reservar plazas">
@@ -498,7 +498,7 @@ $lg = new Logic($db);
                         <p>Todavía no hay reservas</p>
                     <?php else: ?>
 
-                        <form action="#" method="post">
+                        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
 
 
                             <label for="comando">Selecciona una acción</label>
