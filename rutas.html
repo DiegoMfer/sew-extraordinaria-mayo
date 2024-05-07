@@ -32,12 +32,15 @@
     <!--Contenido que diferencia al documento html del resto del documento-->
     <main>
         <section>
+            <h2>Cargar archivo para ejecutar las siguientes opciones</h2>
+            <label for="fileInput">Seleccione un archivo xml</label>
+            <input type="file" id="fileInput" onchange="rutas.setXMLFile(this.files);">
             <h2>Generar kml a partir de xml</h2>
             <button onclick="rutas.generateKML();">Generar KML</button>
             <h2>Generar svg a partir de xml</h2>
             <button onclick="rutas.generateSVG();">Generar SVG</button>
             <h2>Generar html a partir de xml - Muestra la información de las rutas</h2>
-            <button onclick="rutas.load();">Generar HTML</button>
+            <button onclick="rutas.generateHTML();">Generar HTML</button>
         </section>
         
     </main>
