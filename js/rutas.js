@@ -94,13 +94,13 @@ class Rutas {
         //-------------------- coordenadas ------------------------------
         $("main section:last").append("<p> COORDENADAS </p>");
         //-------------------- longitud --------------------------
-        let longitud = $(this).find("coordenadas").find("longitud");
+        let longitud = $(this).find("coordenadas").find("longitud").text();
         $("main section:last").append("<p> Longitud: " + longitud + "</p>");
         //--------------------- latitud -------------------------
-        let latitud = $(this).find("coordenadas").find("latitud");
+        let latitud = $(this).find("coordenadas").find("latitud").text();
         $("main section:last").append("<p> Latitud: " + latitud + "</p>");
         //---------------------- altitud ------------------------
-        let altitud = $(this).find("coordenadas").find("altitud");
+        let altitud = $(this).find("coordenadas").find("altitud").text();
         $("main section:last").append("<p> Altitud: " + altitud + "</p>");
         //---------------------- referencias-----------------------
         $("main section:last").append("<p> REFERENCIAS </p>");
@@ -183,12 +183,12 @@ class Rutas {
           });
 
         //----------------------------------------------
-        let planimetria = $(this).find("planimetria");
+        let planimetria = $(this).find("planimetria").text();
         $("main section:last").append(
           "<p> Planimetria: " + planimetria + "</p>"
         );
         //----------------------------------------------
-        let altimetria = $(this).find("altimetria");
+        let altimetria = $(this).find("altimetria").text();
         $("main section:last").append("<p> Altimetria: " + altimetria + "</p>");
         //----------------------------------------------
       });
