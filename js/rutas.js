@@ -148,9 +148,11 @@ class Rutas {
                     .each(function () {
                       $("main section:last").append("<p> Video: </p>");
                       $("main section:last").append(
-                        '<img src="multimedia/video/' +
-                          $(this).text() +
-                          '"  alt=" video de la ruta " />'
+                        ' <video controls preload="auto">' +
+                        '<source src="' +
+                        $(this).text() +
+                        '" type="video/mp4" />' +
+                        '</video>'
                       );
                     });
                 });

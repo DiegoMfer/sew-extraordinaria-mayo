@@ -2,7 +2,7 @@
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 session_start();
-  
+
 class Login
 {
 
@@ -437,14 +437,14 @@ $lg = new Logic($db);
                     $selectedRecurso = $lg->getRecursoSelected();
 
                     if ($selectedRecurso !== null): ?>
-                        <p>
-                            ID: <?php echo $selectedRecurso->id; ?> <br>
-                            Nombre: <?php echo $selectedRecurso->nombre; ?> <br>
-                            Tipo: <?php echo $selectedRecurso->tipo; ?> <br>
-                            Descripción: <?php echo $selectedRecurso->descripcion; ?> <br>
-                            Límite de Ocupación: <?php echo $selectedRecurso->limite_ocupacion; ?> <br>
-                            Precio: <?php echo $selectedRecurso->precio; ?> <br>
-                        </p>
+                        <ul>
+                            <li> ID: <?php echo $selectedRecurso->id; ?> </li>
+                            <li> Nombre: <?php echo $selectedRecurso->nombre; ?> </li>
+                            <li> Tipo: <?php echo $selectedRecurso->tipo; ?> </li>
+                            <li> Descripción: <?php echo $selectedRecurso->descripcion; ?> </li>
+                            <li> Límite de Ocupación: <?php echo $selectedRecurso->limite_ocupacion; ?> </li>
+                            <li> Precio: <?php echo $selectedRecurso->precio; ?> </li>
+                        </ul>
                     <?php else: ?>
                         <p>El recurso seleccionado no se encontró en la base de datos.</p>
                     <?php endif; ?>
@@ -529,17 +529,18 @@ $lg = new Logic($db);
                                 $lg->deleteAllReservasForUser();
                             }
 
-                        }?>
+                        } ?>
 
                         <h3>Presupuestos realizados</h3>
 
                         <?php if (count($lg->getPresupuestosUsuario()) == 0): ?>
                             <p>Todavía no hay presupuestos</p>
                         <?php else: ?>
-                            <?php foreach ($lg->getPresupuestosUsuario() as $presupuesto): ?>
-                                <p><?= $presupuesto['id'] ?> - <?= $presupuesto['precio'] ?></p>
-                            <?php endforeach; ?>
-
+                            <ul>
+                                <?php foreach ($lg->getPresupuestosUsuario() as $presupuesto): ?>
+                                    <li><?= $presupuesto['id'] ?> - <?= $presupuesto['precio'] ?></li>
+                                <?php endforeach; ?>
+                            </ul>
                         <?php endif; ?>
 
                         <h3>Recursos reservados </h3>
@@ -547,11 +548,13 @@ $lg = new Logic($db);
                         <?php if (count($lg->getReservasUsuario()) == 0): ?>
                             <p>Todavía no hay reseras</p>
                         <?php else: ?>
-                            <?php foreach ($lg->getReservasUsuario() as $reserva): ?>
-                                <p><?= $db->getRecurso($reserva['id_recurso'])->nombre ?> - <?= $reserva['fecha_inicio'] ?> -
-                                    <?= $reserva['fecha_fin'] ?>
-                                </p>
-                            <?php endforeach; ?>
+                            <ul>
+                                <?php foreach ($lg->getReservasUsuario() as $reserva): ?>
+                                    <li><?= $db->getRecurso($reserva['id_recurso'])->nombre ?> - <?= $reserva['fecha_inicio'] ?> -
+                                        <?= $reserva['fecha_fin'] ?>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
                         <?php endif; ?>
                     <?php endif; ?>
                 </section>

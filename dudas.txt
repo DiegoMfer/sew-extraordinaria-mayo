@@ -6,9 +6,18 @@ Access to XMLHttpRequest at 'file:///C:/Users/dimar/Desktop/sew/sew-extraordinar
 Planimetría de la ruta usando el archivo KML generado.
 Altimetría de la ruta usando el archivo SVG generado
 
-
-
-
 --Uso de id en php para el post
 
 --Uso de <br>
+
+
+
+
+
+
+
+
+--- Notas
+
+Usar api file tema 4
+Eliminar br y usar listas

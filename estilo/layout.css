@@ -37,7 +37,7 @@ section{
 
 /*Especificidad: 001*/
 li {
-    padding: 1em;
+    padding: 0.25em;
 }
 
 /*Especificidad: 001*/
