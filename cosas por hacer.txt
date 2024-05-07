@@ -1,2 +1,0 @@
-Planimetría de la ruta usando el archivo KML generado.
-Altimetría de la ruta usando el archivo SVG generado.
